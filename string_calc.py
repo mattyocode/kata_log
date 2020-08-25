@@ -20,10 +20,13 @@ class StringCalc:
         return lst
 
     def check_negative(self, lst):
+        negative_nums = []
         for item in lst:
             if item < 0:
-                raise ValueError(f'Negatives not allowed. {item} entered as argument')
-                print(f'Negatives not allowed. {item} entered as argument')
+                negative_nums.append(item)
+        if negative_nums:
+            raise ValueError(f'Negatives not allowed. {negative_nums} entered as argument')
+                
 
     def add_num(self, str_num):
         lst = self.to_int_list(str_num)

@@ -31,3 +31,8 @@ def test_negatives_not_allowed():
     with pytest.raises(ValueError) as e:
         subject.add_num("1, -1")
     assert e.type is ValueError
+
+def test_return_multiple_negative_numbers():
+    with pytest.raises(ValueError) as e:
+        subject.add_num("1, -1, -2, 3")
+    assert e.type is ValueError
