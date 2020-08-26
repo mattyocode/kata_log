@@ -15,10 +15,12 @@ class StringCalc:
     def square_bracket_delimiter_split(self, str_num):
         rules = re.compile(r"\[([^\w]+)\]")
         delimiter = rules.findall(str_num)
-        print("string num", str_num)
-        spl_pnts = "***"
-        lst = re.split(f"[{spl_pnts}]", str_num)
-        print(lst)
+        print("This are the delimiter: ", delimiter)
+        defaults = r'/ [ \]'
+        deli_str = ' '.join(delimiter)
+        pattern = f"[{deli_str} \n {defaults} ]"
+        lst = re.split(f'{pattern}', str_num)
+        return lst
 
     def to_int_list(self, str_num):
         lst = self.split_string(str_num)

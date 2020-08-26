@@ -43,3 +43,5 @@ def test_numbers_above_1000_ignored():
 def test_delimiter_in_square_brakets():
     assert subject.add_num("//[***]\n1***2***3") == 6
 
+def test_delimiter_in_square_brakets_mismatch():
+    assert subject.add_num("//[**]\n1***2***3") == 6
