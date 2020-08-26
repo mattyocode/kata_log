@@ -21,10 +21,10 @@ def test_5_args():
 def test_input_seperated_by_linebreaks():
     assert subject.add_num("1\n2,3") == 6
 
-def test_change_delimeter():
+def test_change_delimiter():
     assert subject.add_num("//;\n1;2") == 3
 
-def test_change_delimeter_again():
+def test_change_delimiter_2():
     assert subject.add_num("//!\n4!2") == 6
 
 def test_negatives_not_allowed():
@@ -36,3 +36,10 @@ def test_return_multiple_negative_numbers():
     with pytest.raises(ValueError) as e:
         subject.add_num("1, -1, -2, 3")
     assert e.type is ValueError
+
+def test_numbers_above_1000_ignored():
+    assert subject.add_num("1, 2, 1001") == 3
+
+def test_delimiter_in_square_brakets():
+    assert subject.add_num("//[***]\n1***2***3") == 6
+
