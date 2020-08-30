@@ -2,6 +2,15 @@ import re
 
 class StringCalc:
 
+    def add_num(self, str_num):
+        lst = self.to_int_list(str_num)
+        self.check_negative(lst)
+        self.check_below_1000(lst)
+        total = 0
+        for x in lst:
+            total += x
+        return total
+
     def split_string(self, str_num):
         if str_num[:3] == '//[':
             lst = self.square_bracket_delimiter_split(str_num)
@@ -14,11 +23,10 @@ class StringCalc:
 
     def square_bracket_delimiter_split(self, str_num):
         rules = re.compile(r"\[([^\[\]]+)\]")
-        delimiter = rules.findall(str_num)
-        print("These are the delimiters: ", delimiter)
+        delimiters = rules.findall(str_num)
+        delimiters_str = ' '.join(delimiters)
         defaults = r'\/ [ \]'
-        deli_str = ' '.join(delimiter)
-        pattern = f"[{deli_str} \n {defaults} ]"
+        pattern = f"[{delimiters_str} \n {defaults} ]"
         lst = re.split(f'{pattern}', str_num)
         return lst
 
@@ -43,12 +51,3 @@ class StringCalc:
         for item in lst:
             if item > 1000:
                 lst.remove(item)
-
-    def add_num(self, str_num):
-        lst = self.to_int_list(str_num)
-        self.check_negative(lst)
-        self.check_below_1000(lst)
-        total = 0
-        for x in lst:
-            total += x
-        return total
